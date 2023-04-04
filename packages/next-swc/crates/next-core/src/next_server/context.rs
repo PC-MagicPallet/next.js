@@ -234,7 +234,8 @@ pub async fn get_server_module_options_context(
 
     let tsconfig = get_typescript_transform_options(project_path);
     let decorators_options = get_decorators_transform_options(project_path);
-    let jsx_runtime_options = get_jsx_transform_options(project_path);
+    let mdx_rs_options = *next_config.mdx_rs().await?;
+    let jsx_runtime_options = get_jsx_transform_options(project_path, mdx_rs_options);
 
     let module_options_context = match ty.into_value() {
         ServerContextType::Pages { .. } | ServerContextType::PagesData { .. } => {
@@ -248,6 +249,7 @@ pub async fn get_server_module_options_context(
                 enable_postcss_transform,
                 enable_webpack_loaders,
                 enable_typescript_transform: Some(tsconfig),
+                enable_mdx_rs: mdx_rs_options,
                 decorators: Some(decorators_options),
                 rules: vec![(
                     foreign_code_context_condition,
@@ -273,6 +275,7 @@ pub async fn get_server_module_options_context(
                 enable_postcss_transform,
                 enable_webpack_loaders,
                 enable_typescript_transform: Some(tsconfig),
+                enable_mdx_rs: mdx_rs_options,
                 decorators: Some(decorators_options),
                 rules: vec![(
                     foreign_code_context_condition,
@@ -303,6 +306,7 @@ pub async fn get_server_module_options_context(
                 enable_postcss_transform,
                 enable_webpack_loaders,
                 enable_typescript_transform: Some(tsconfig),
+                enable_mdx_rs: mdx_rs_options,
                 decorators: Some(decorators_options),
                 rules: vec![(
                     foreign_code_context_condition,
@@ -321,6 +325,7 @@ pub async fn get_server_module_options_context(
                 enable_postcss_transform,
                 enable_webpack_loaders,
                 enable_typescript_transform: Some(tsconfig),
+                enable_mdx_rs: mdx_rs_options,
                 decorators: Some(decorators_options),
                 rules: vec![(
                     foreign_code_context_condition,
@@ -341,6 +346,7 @@ pub async fn get_server_module_options_context(
                 enable_postcss_transform,
                 enable_webpack_loaders,
                 enable_typescript_transform: Some(tsconfig),
+                enable_mdx_rs: mdx_rs_options,
                 decorators: Some(decorators_options),
                 rules: vec![(
                     foreign_code_context_condition,
