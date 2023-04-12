@@ -20,7 +20,7 @@ export default function Home() {
       <hr />
 
       <Post title="The final blog post">
-        <P>C’est fin</P>
+        <P>C’est fini</P>
       </Post>
 
       <style jsx>{`
